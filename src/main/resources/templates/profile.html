@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <title>Profile</title>
+</head>
+<body>
+    <header>
+        <div class=nav-header>
+            <a class="share-title">Share</a>
+            <nav>
+            <ul class="nav__links">
+                <li><a href="#"><i class='bx bxs-home'></i></a></li>
+                <li><a href="#"><i class='bx bx-group' ></i></i></a></li>
+                <li><a href="#"><i class='bx bx-grid-alt'></i></a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="side-bar">
+            <ul class="side__links">
+                <li><a href="#" th:text="'Username: ' + ${user.userName}"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+        <div class="main-pane">
+            <p >UserName: </p>
+        </div>
+    </div>
+</body>
+</html>
