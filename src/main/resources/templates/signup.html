@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <title>Sign Up</title>
 </head>
 <body>
     <div class="main-container">
+        <div class="message">
+            <p>Please fill in the form below to sign up to sharedLife!</p>
+        </div>
         <div class="sign-up-form">
-            <form th:action="@{/profile}">
-                <div class="form-entry">Name</div>
-                <div class="form-entry">Email</div>
-                <div class="form-entry">Password</div>
-                <div class="form-entry">DOB</div>
-                <div class="form-entry">Gender</div>
-                <div class="form-entry">Nickname</div>
+            <form method="post" th:action="@{/profile}" th:object="${user}" autocomplete="off">
+                <input type="text" th:field="*{userName}" placeholder="Username"> <br>
+                <input type="text" th:field="*{userPassword}" placeholder="Password"> <br>
+                <input type="text" th:field="*{email}" placeholder="myEmailAdress@email.com"> <br>
+                <input type="text" th:field="*{userDOB}" placeholder="ddmmyyyy"> <br>
+                <input type="text" th:field="*{userGen}" > <br>
+                <input type="text" th:field="*{userNickName}" placeholder="myNickName">
             </form>
         </div>
     </div>

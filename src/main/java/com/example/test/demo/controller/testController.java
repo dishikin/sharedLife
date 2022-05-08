@@ -37,9 +37,9 @@ public class testController {
     }
 
     @RequestMapping(value="/signup")
-    public ModelAndView signup(){
-        ModelAndView mav = new ModelAndView();
-
+    public ModelAndView signup(@ModelAttribute User user, ModelAndView mav){
+        mav.addObject("user", new User());
+        mav.setViewName("signup");
         return mav;
     }
 }
