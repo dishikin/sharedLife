@@ -42,4 +42,16 @@ public class testController {
         mav.setViewName("signup");
         return mav;
     }
+
+    @RequestMapping(value="/pSignUp", method=RequestMethod.POST)
+    public ModelAndView psignup(@ModelAttribute User user, ModelAndView mav)
+    {
+        /**
+         * SignUpAction
+         * SignUpLogic
+         * SignUpFunction
+         */
+        mav.setViewName("/profile");
+        return mav;
+    }
 }
