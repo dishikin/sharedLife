@@ -19,6 +19,40 @@ public class UsersDAO {
         this.con = con;
     }
 
+    public Boolean checkPass(String userName, String password)throws SQLException{
+        Boolean check = null;
+        String sql = "SELECT userName, userPassword FROM user WHERE userName = ?";
+        PreparedStatement stmt = null;
+        ResultSet res = null;
+        
+        try{
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, userName);
+            res = stmt.executeQuery();
+
+            if(res.next()){
+                String pass = res.getString("userPassword");
+                if(pass.equals(password)){
+                    check = true;
+                }else{
+                    check = false;
+                }
+            }
+        }catch(SQLException e){
+            e.getStackTrace();
+            throw e;
+        }finally{
+            if(res != null) {
+                res.close();
+            }
+            if(stmt != null){
+                stmt.close();
+            }
+        }
+
+        return check;
+    }
+
     /**
      * finding a user from the DB
      * @param userName
@@ -41,12 +75,12 @@ public class UsersDAO {
             
             if(res.next()){
                 String p = res.getString("userPassword");
-                System.out.println(p);
+                System.out.println("userPassword: " + p);
                 Boolean pass = password.equals(res.getString("userPassword"));
-                System.out.println(pass);
+                System.out.println("userPassword is correct: " + pass);
                 //Checking whether the user belongs to a group.
                 hasGroup = res.getBoolean("hasGroup");
-                System.out.println(hasGroup);
+                System.out.println("hasGroup: " + hasGroup);
 
                 if(pass){
                     //if the user doesn't belong to a group instantiate without group info

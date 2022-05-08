@@ -12,6 +12,11 @@
 <body>
     <div class="main-container">
         <div class="info">Please Login</div>
+        <div class="message">
+            <th:block th:if="${message != null}">
+                <p th:text="${message}"></p>
+            </th:block>
+        </div>
         <div class="input">
             <form method="post" th:action="@{/profile}" th:object="${user}" autocomplete="off">
                 <label for="username">Username:</label><br>

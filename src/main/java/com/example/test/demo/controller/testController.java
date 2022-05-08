@@ -1,6 +1,6 @@
 package com.example.test.demo.controller;
 
-import com.example.test.Action.LoginAction;
+import com.example.test.demo.Action.LoginAction;
 import com.example.test.demo.Entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class testController {
@@ -23,14 +24,13 @@ public class testController {
     {
         user.getUserName();
         LoginAction login = new LoginAction();
-        String page = login.execute(user.getUserName(), user.getUserPassword());
-        User foundUser = login.getUser(user.getUserName(), user.getUserPassword());
-        
-        if(foundUser.getUserName() == null || foundUser.getUserPassword() == null){
-            mav.setViewName(page);
+        Boolean check = login.checkUser(user.getUserName(), user.getUserPassword(), mav);
+        if(check == null){
+            mav.setViewName("login");
+            return mav;
         }else{
+            String page = login.execute(mav, user.getUserName(), user.getUserPassword());
             mav.setViewName(page);
-            mav.addObject("user", user);
         }
         
         return mav;

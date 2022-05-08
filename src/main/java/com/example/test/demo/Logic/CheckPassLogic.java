@@ -5,34 +5,24 @@ import java.sql.SQLException;
 
 import com.example.test.demo.DAO.ConnectionManager;
 import com.example.test.demo.DAO.UsersDAO;
-import com.example.test.demo.Entity.User;
 
-public class FindUserLogic {
+public class CheckPassLogic {
+    
+    public CheckPassLogic(){
 
-    public FindUserLogic(){
-        
     }
 
-    /**
-     * Function for finding a user.
-     * @param userNAme
-     * @param password
-     * @return User
-     * @throws SQLException
-     * 
-     */
-    public User findUser(String userName, String password) throws BusinessException, SystemException{
+    public Boolean checkPass(String userName, String password)throws BusinessException, SystemException{
+        Boolean check = null;
         Connection con = null;
-        User user = null;
 
         try{
             con = ConnectionManager.getConnection();
-
             UsersDAO userDAO = new UsersDAO(con);
-            user = userDAO.findUser(userName, password);
+            check = userDAO.checkPass(userName, password);
 
-            if(user == null){
-                throw new BusinessException("There is no user with the set of information you gave us.");
+            if(check == null || check == false){
+                throw new BusinessException("The Username or password you entered is incorrect. Please try again.");
             }
 
         }catch(SQLException e){
@@ -48,6 +38,7 @@ public class FindUserLogic {
                 throw new SystemException("System error has occured. <br> Please contact the system manager.");
             }
         }
-        return user;
+        
+        return check;
     }
 }
