@@ -1,5 +1,7 @@
 package com.example.test.demo.controller;
 
+import com.example.test.demo.Action.CheckUserExistAction;
+import com.example.test.demo.Action.SignUpAction;
 import com.example.test.demo.Action.LoginAction;
 import com.example.test.demo.Entity.User;
 import org.springframework.stereotype.Controller;
@@ -51,7 +53,18 @@ public class testController {
          * SignUpLogic
          * SignUpFunction
          */
-        mav.setViewName("/profile");
+        CheckUserExistAction eAction = new CheckUserExistAction();
+        SignUpAction sAction = new SignUpAction();
+        Boolean userExist = eAction.checkUserExist(mav, user.getUserName());
+
+        if(userExist == true){
+            mav.setViewName("signup");
+            return mav;
+        }else{
+            String page = sAction.execute(mav, user);
+            mav.setViewName(page);
+        }
+
         return mav;
     }
 }

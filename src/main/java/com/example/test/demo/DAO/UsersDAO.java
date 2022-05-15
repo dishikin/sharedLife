@@ -124,4 +124,60 @@ public class UsersDAO {
 
         return user;
     }
+
+    public User createUser(User user) throws SQLException{
+        String sql = "INSERT INTO user (userName, userPassword, email, userDOB, userGen, groupId, hasGroup, userNickName) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement stmt = null;
+
+        try{
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, user.getUserName());
+            stmt.setString(2, user.getUserPassword());
+            stmt.setString(3, user.getEmail());
+            stmt.setString(4, user.getUserDOB());
+            stmt.setString(5, user.getUserGen());
+            stmt.setInt(6, user.getGrouID());
+            stmt.setBoolean(7, false);
+            stmt.setString(8, user.getUserNickName());
+            stmt.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();;
+            throw e;
+        }finally{
+            if(stmt != null){
+                stmt.close();
+            }
+        }
+        return user;
+    }
+
+    public Boolean checkUserExistDAO(String username) throws SQLException{
+        Boolean userExist = false;
+        String sql = "SELECT userName FROM user";
+        PreparedStatement stmt = null;
+        ResultSet res = null;
+
+        try{
+            stmt = con.prepareStatement(sql);
+            res = stmt.executeQuery();
+            while(res.next()){
+                String result = res.getString("userName");
+                if(result.equals(username)){
+                    userExist = true;
+                    return userExist;
+                }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();;
+            throw e;
+        }finally{
+            if(res != null) {
+                res.close();
+            }
+            if(stmt != null){
+                stmt.close();
+            }
+        }
+        return userExist;
+    }
 }
