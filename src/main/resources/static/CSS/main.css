@@ -55,14 +55,24 @@ i{
 }
 
 .side-bar{
+    display: inline-block;
     border: solid;
     border-radius: 10px;
     padding: 20px;
     margin: 10%;
 }
 
-.side__links{
+.side-links{
+    padding: 0;
+    justify-content: center;
+    align-items: center;
     list-style: none;
+}
+
+.side-links li{
+    margin: 10px;
+    width: auto;
+    height: auto;
 }
 
 .main-pane{
@@ -70,6 +80,17 @@ i{
     border-radius: 10px;
     padding: 20px;
     margin: 10%;
+    width: 60%;
+    height: 50%;
+    display: flex;
+}
+
+.user-info{
+    margin: 10px;
     width: 50%;
+}
+
+.image-holder{
+    margin: 10px;
     
 }
