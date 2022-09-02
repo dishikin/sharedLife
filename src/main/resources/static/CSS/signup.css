@@ -1,10 +1,18 @@
 body{
     padding: 0;
     margin: 0;
-    background-color: #E9E5D6; 
-    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #16213E; 
+    font-family: 'Rubik', sans-serif;
 }
 
+:root{
+    --text-box-width: 200px;
+    --text-box-height: 25px;
+    --text-box-margin-top: 5px;
+    --text-box-margin-bottom: 15px;
+    --text-box-padding: 5px;
+    --label-font-size: 12px;
+}
 
 form{
     position: relative;
@@ -13,6 +21,11 @@ form{
     justify-content: center;
     text-align: center;
     height: 500px;
+}
+
+h1{
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .title{
@@ -24,14 +37,34 @@ form{
     position: relative;
     font-weight: 100;
     font-size: 12px;
+    color: #7F8487;
 }
 
 input{
     width: 200px;
     height: 30px;
-    margin-top: 20px;
     border-style: none;
     border-radius: 5px;
+}
+
+input[type=text]{
+    border: solid;
+    border-color: #F5EDED;
+    border-radius: 5px;
+    margin-bottom: var(--text-box-margin-bottom);
+    padding: var(--text-box-padding);
+}
+
+input[type=text]:hover{
+    outline: none;
+    border-color: #1B3C59;
+    width: var(--text-box-width);
+}
+
+input[type=text]:focus{
+    outline: none;
+    border-color: #1B3C59;
+    width: var(--text-box-width);
 }
 
 .sub-button{
@@ -43,13 +76,22 @@ input{
     border-radius: 5px;
     margin-left: auto;
     margin-right: auto;
+    color: #FFFFFF;
+    background-color: #16213E;
+    cursor: pointer;
+}
+
+.sub-button:hover{
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.3);
+    border-color: transparent;
+    cursor: pointer;
 }
 
 .main-container{
     position: absolute;
     width: 600px;
     height: 700px;
-    background-color: #ACB992;
+    background-color: #FFFFFF;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -57,9 +99,9 @@ input{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 25px;
+    border-radius: 10px;
     box-shadow: 10px 10px 8px rgba(70, 61, 61, 0.2),
-                -10px -10px 8px rgba(255, 255, 255, 0.2);
+                -5px -5px 8px rgba(255, 255, 255, 0.2);
 }
 
 

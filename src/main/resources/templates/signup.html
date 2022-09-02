@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/signup.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Sign Up</title>
 </head>
 <body>
     <div class="main-container">
         <div class="title">
-            <h1>Register for sharedLife</h1>
+            <h1>Sign up to sharedLife</h1>
         </div>
         <div class="message">
-            <p class="form-intro">Please fill in the form below to sign up to sharedLife!</p>
+            <p class="form-intro">Please enter your details to sign up to sharedLife</p>
         </div>
         <div class="sign-up-form">
             <form method="post" th:action="@{/pSignUp}" th:object="${user}" autocomplete="off">

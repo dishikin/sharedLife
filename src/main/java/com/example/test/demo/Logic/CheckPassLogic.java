@@ -22,7 +22,7 @@ public class CheckPassLogic {
             check = userDAO.checkPass(userName, password);
 
             if(check == null || check == false){
-                throw new BusinessException("The Username or password you entered is incorrect. Please try again.");
+                throw new BusinessException("Username or password is incorrect.");
             }
 
         }catch(SQLException e){
