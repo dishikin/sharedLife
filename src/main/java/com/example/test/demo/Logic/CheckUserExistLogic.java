@@ -6,25 +6,25 @@ import java.sql.SQLException;
 import com.example.test.demo.DAO.ConnectionManager;
 import com.example.test.demo.DAO.UsersDAO;
 
-public class CheckPassLogic {
+
+public class CheckUserExistLogic {
+    public CheckUserExistLogic(){
+
+    }   
     
-    public CheckPassLogic(){
-
-    }
-
-    public Boolean checkPass(String userName, String password)throws BusinessException, SystemException{
-        Boolean check = null;
+    public Boolean checkUserExist(String username)throws BusinessException, SystemException{
+        Boolean userExist = true;
         Connection con = null;
-
+        
         try{
             con = ConnectionManager.getConnection();
+
             UsersDAO userDAO = new UsersDAO(con);
-            check = userDAO.checkPass(userName, password);
+            userExist = userDAO.checkUserExistDAO(username);
 
-            if(check == null || check == false){
-                throw new BusinessException("Username or password is incorrect.");
+            if(userExist == true){
+                throw new BusinessException("The username you gave us already exists. <br> Please try again with a different username");
             }
-
         }catch(SQLException e){
             e.printStackTrace();
             throw new SystemException("System error has occured. <br> Please contact the system manager.");
@@ -38,7 +38,6 @@ public class CheckPassLogic {
                 throw new SystemException("System error has occured. <br> Please contact the system manager.");
             }
         }
-        
-        return check;
+        return userExist;
     }
 }

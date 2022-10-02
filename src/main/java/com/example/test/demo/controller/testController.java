@@ -1,5 +1,7 @@
 package com.example.test.demo.controller;
 
+import com.example.test.demo.Action.CheckUserExistAction;
+import com.example.test.demo.Action.SignUpAction;
 import com.example.test.demo.Action.LoginAction;
 import com.example.test.demo.Entity.User;
 import org.springframework.stereotype.Controller;
@@ -37,8 +39,31 @@ public class testController {
     }
 
     @RequestMapping(value="/signup")
-    public ModelAndView signup(){
-        ModelAndView mav = new ModelAndView();
+    public ModelAndView signup(@ModelAttribute User user, ModelAndView mav){
+        mav.addObject("user", new User());
+        mav.setViewName("signup");
+        return mav;
+    }
+
+    @RequestMapping(value="/pSignUp", method=RequestMethod.POST)
+    public ModelAndView psignup(@ModelAttribute User user, ModelAndView mav)
+    {
+        /**
+         * SignUpAction
+         * SignUpLogic
+         * SignUpFunction
+         */
+        CheckUserExistAction eAction = new CheckUserExistAction();
+        SignUpAction sAction = new SignUpAction();
+        Boolean userExist = eAction.checkUserExist(mav, user.getUserName());
+
+        if(userExist == true){
+            mav.setViewName("signup");
+            return mav;
+        }else{
+            String page = sAction.execute(mav, user);
+            mav.setViewName(page);
+        }
 
         return mav;
     }

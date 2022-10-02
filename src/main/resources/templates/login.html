@@ -6,33 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Login</title>
 </head>
 <body>
     <div class="main-container">
-        <div class="info">Please Login</div>
-        <div class="message">
-            <th:block th:if="${message != null}">
-                <p th:text="${message}"></p>
-            </th:block>
-        </div>
-        <div class="input">
-            <form method="post" th:action="@{/profile}" th:object="${user}" autocomplete="off">
-                <label for="username">Username:</label><br>
-                <input type="text" th:field="*{userName}"> <br>
-                <label for="pass">Password:</label><br>
-                <input type="password" th:field="*{userPassword}"><br>
-                <input class="sub-button" type="submit" value="Log in">
-            </form>
-            
-        </div>
-        <div class="sign-up">
-            <p>Don't have an account?<br>
-                You can <a href="#">Sign up here</a>!
-            </p>
+        <div class="left-box">
+            <div class="title">Welcome back</div>
+                <div class="enter-details">Please enter your details.</div>
+                <div class="error-message">
+                    <th:block th:if="${message != null}">
+                        <p th:text="${message}"></p>
+                    </th:block>
+                </div>
+                <div class="input">
+                    <form class="login-form" method="post" th:action="@{/profile}" th:object="${user}" autocomplete="off">
+                        <label for="username">Username:</label><br>
+                        <input type="text" th:field="*{userName}" placeholder="Enter your username"> <br>
+                        <label for="pass">Password:</label><br>
+                        <input type="password" th:field="*{userPassword}"><br>
+                        <input class="sub-button" type="submit" value="Log in">
+                    </form>                    
+                </div>
+                <div class="sign-up">
+                    <p class="sign-up-message">Don't have an account?</p>
+                        <a th:href="@{/signup}">Sign Up</a>
+                    
+                </div>
         </div>
 
+        <div class="right-box">
+            <img class="login-image" src="../images/login-vertical-friendship.jpg">
+        </div>
+        
     </div>
 </body>
 </html>
